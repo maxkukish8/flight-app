@@ -1,6 +1,20 @@
 Flights App ✈️
 Test task (ДержКод) — a single-page application for browsing and booking flight tickets.
 
+
+# Estimated time (rough)
+- Project setup (Vite, TS, ESLint, routing, aliases): 2–3 h
+- State & API layer (Redux Toolkit + RTK Query, types): 3–4 h
+- Flights list (UI, filters, URL params, loading/error): 4–5 h
+- Flight details (seat map generation, stable layout, picking logic, dynamic remaining): 6–8 h
+- Cart (reducers, UI, total, localStorage persist): 3–4 h
+- Theming (light/dark, persistence), header, minor UX polish: 2–3 h
+- Tests (cart reducer, seat utils, date utils) + Jest config: 2–3 h
+- Build & Deploy (GH Pages, `base` path, HashRouter/404 fallback) + bugfixes: 2–3 h
+
+**Total:** ~26–32h.
+
+
 # Tech Stack
 * Vite — project bundler
 * React 18 + TypeScript — frontend framework
@@ -10,8 +24,8 @@ Test task (ДержКод) — a single-page application for browsing and bookin
 * React Router v6 — routing
 * Jest + React Testing Library — unit testing
 
-# Getting Started
 
+# Getting Started
 **clone the repo**   
 git clone <repo-url>  
 cd flights-app
@@ -28,8 +42,8 @@ npm run build
 **run tests**  
 npm test
 
-# Project Structure (Feature-Sliced Design)
 
+# Project Structure (Feature-Sliced Design)
 src/
 app/          # AppRouter, AppProviders, store  
 pages/        # pages (FlightsPage, FlightDetailsPage, CartPage)  
@@ -38,8 +52,8 @@ entities/     # entities (flight)
 shared/       # api, theme, ui, lib, types  
 tests/        # setupTests.ts, unit tests
 
-# Implemented
 
+# Implemented
 * Project setup with Vite + React + TypeScript
 * Redux Toolkit slices for cart and favorites
 * RTK Query + Axios API service layer
@@ -47,8 +61,8 @@ tests/        # setupTests.ts, unit tests
 * Initial pages (FlightsPage, FlightDetailsPage, CartPage) with stubs
 * Unit testing environment (Jest + RTL)
 
-# Винести роботу з API в окремий сервісний шар (custom hooks або RTK Query).
 
+# Винести роботу з API в окремий сервісний шар (custom hooks або RTK Query).
 **API Service Layer (RTK Query)**
 
 Щоб розділити UI та бізнес‑логіку, робота з API винесена в окремий сервісний шар на базі **Redux Toolkit Query**.  
@@ -75,7 +89,6 @@ import { useGetFlightsQuery, useGetFlightByIdQuery } from '@/entities/flight/api
 
 
 # API: усі запити через окремий сервісний шар (Axios або RTK Query).
-
 **API: окремий сервісний шар (RTK Query)**
 
 Усі звернення до бекенда виконуються **через окремий сервісний шар**, побудований на **Redux Toolkit Query** (альтернатива кастомним Axios‑хукам). Це ізолює HTTP‑логіку від UI, забезпечує кешування, стани завантаження/помилок і рефетчинг «з коробки».
@@ -99,9 +112,6 @@ import { useGetFlightsQuery, useGetFlightByIdQuery } from '@/entities/flight/api
 
 
 # 🧪 Тести
-
-У проєкті додано базове покриття unit-тестами для Redux-ред’юсера та утиліт.
-
 ### Технології
 - **Jest** — як тестовий раннер
 - **ts-jest** — для підтримки TypeScript

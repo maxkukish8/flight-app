@@ -98,6 +98,8 @@ export function FlightDetailsPage() {
     if (error) return <Typography color="error">Error loading flight.</Typography>;
     if (!flight) return <Typography>No flight found</Typography>;
 
+    const hasTickets = (flight?.tickets?.total ?? 0) > 0;
+
     // Derived UI numbers: total from API; remaining decreases by picked count
     const totalUI = gridResult.total;
     const remainingUI = Math.max(0, (flight.tickets?.remaining ?? 0) - pickedForThisFlight.length);
@@ -202,7 +204,7 @@ export function FlightDetailsPage() {
 
             <Divider orientation="horizontal" flexItem />
 
-            {flatSeats.length === 0 ? (
+            {!hasTickets ? (
                 <Typography color="warning.main">No seat map available</Typography>
             ) : allBusy ? (
                 <Typography color="warning.main" textAlign="center" mt={2}>All seats are occupied</Typography>
