@@ -17,17 +17,22 @@ import { FlightDetailsPage } from '@/pages/FlightDetailsPage/FlightDetailsPage';
 import { CartPage } from '@/pages/CartPage/CartPage';
 import { RootLayout } from './RootLayout';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+    [
+        {
+            path: '/',
+            element: <RootLayout />,
+            children: [
+                { index: true, element: <FlightsPage /> },
+                { path: 'flights/:id', element: <FlightDetailsPage /> },
+                { path: 'cart', element: <CartPage /> },
+            ],
+        },
+    ],
     {
-        path: '/',
-        element: <RootLayout />,
-        children: [
-            { index: true, element: <FlightsPage /> },
-            { path: 'flights/:id', element: <FlightDetailsPage /> },
-            { path: 'cart', element: <CartPage /> },
-        ],
-    },
-]);
+        basename: import.meta.env.BASE_URL,
+    }
+);
 
 export function AppRouter() {
     return <RouterProvider router={router} />;
