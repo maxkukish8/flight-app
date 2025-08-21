@@ -8,6 +8,7 @@ import { genStableSeatGridByTickets } from '@/shared/lib/seatUtils';
 import { fmtTime, fmtDate, fmtDuration } from '@/shared/lib/date';
 import { useTheme, useMediaQuery } from '@mui/material';
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
+import { flatten2D } from '@/shared/lib/array';
 
 const MAX_COLS = 7;
 
@@ -101,11 +102,11 @@ export function FlightDetailsPage() {
     const totalUI = gridResult.total;
     const remainingUI = Math.max(0, (flight.tickets?.remaining ?? 0) - pickedForThisFlight.length);
 
-    const flatSeats = seats.flat();
+    const flatSeats = flatten2D(seats);
     const allBusy = flatSeats.length > 0 && flatSeats.every((s) => s.occupied);
 
     const handlePick = (seatId: string) => {
-        const found = seats.flat().find(s => s.id === seatId);
+        const found = flatSeats.find(s => s.id === seatId);
         if (!found || found.occupied) return;
 
         dispatch(addItem({ flightId: flight.id, seat: seatId, price: flight.price }));

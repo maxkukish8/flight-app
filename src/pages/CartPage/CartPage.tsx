@@ -5,11 +5,17 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
 import { removeItem, clear } from '@/features/cart/model/cartSlice';
 
 export function CartPage() {
-    const { items } = useAppSelector(s => s.cart);
+    const items = useAppSelector(s => s.cart?.items ?? []);
     const dispatch = useAppDispatch();
     const total = items.reduce((sum, i) => sum + i.price, 0);
 
-    if (!items.length) return <Box p={3}><Typography>Your cart is empty</Typography></Box>;
+    if (items.length === 0) {
+        return (
+            <Box p={3}>
+                <Typography>Your cart is empty</Typography>
+            </Box>
+        );
+    }
 
     return (
         <Box p={3}>

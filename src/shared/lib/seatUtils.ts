@@ -6,6 +6,7 @@
  * @param maxCols max columns to use (layout width)
  * @param seedKey any stable string to seed randomness (e.g., flight id)
  */
+import { flatten2D } from '@/shared/lib/array';
 export type Seat = { id: string; occupied: boolean };
 export type SeatGrid = Seat[][];
 export type SeatGridResult = {
@@ -83,7 +84,7 @@ export const genStableSeatGridByTickets = (
         grid.push(row);
     }
 
-    const flat = grid.flat();
+    const flat = flatten2D(grid);
     const needOccupied = Math.max(0, total - remaining);
 
     // Pick exactly `needOccupied` random seats to occupy, using a deterministic RNG

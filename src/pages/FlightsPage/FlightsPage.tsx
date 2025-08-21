@@ -20,7 +20,7 @@ export function FlightsPage() {
     const sort = params.get('sort') ?? '';
     const nav = useNavigate();
     const dispatch = useAppDispatch();
-    const fav = useAppSelector((s) => s.favorites?.ids ?? []);
+    const fav = useAppSelector(s => s.favorites?.ids ?? []);
     const { data, isLoading, error } = useGetFlightsQuery();
 
     const airlines = useMemo(() => {
@@ -46,7 +46,7 @@ export function FlightsPage() {
         });
     };
 
-    const cartItems = useAppSelector(s => s.cart.items);
+    const cartItems = useAppSelector(s => s.cart?.items ?? []);
 
     const pickedCountByFlight = useMemo(() => {
         const m = new Map<string, number>();
