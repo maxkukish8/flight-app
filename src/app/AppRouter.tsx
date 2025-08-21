@@ -17,6 +17,8 @@ import { FlightDetailsPage } from '@/pages/FlightDetailsPage/FlightDetailsPage';
 import { CartPage } from '@/pages/CartPage/CartPage';
 import { RootLayout } from './RootLayout';
 
+const basename = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
+
 const router = createBrowserRouter(
     [
         {
@@ -29,9 +31,7 @@ const router = createBrowserRouter(
             ],
         },
     ],
-    {
-        basename: import.meta.env.BASE_URL,
-    }
+    { basename }
 );
 
 export function AppRouter() {
