@@ -17,7 +17,7 @@ export function FlightDetailsPage() {
     const dispatch = useAppDispatch();
 
     // All items in cart
-    const cartItems = useAppSelector((s) => s.cart.items);
+    const cartItems = useAppSelector((s) => s.cart?.items ?? []);
     const pickedForThisFlight = useMemo(
         () => cartItems.filter((i) => i.flightId === id),
         [cartItems, id]

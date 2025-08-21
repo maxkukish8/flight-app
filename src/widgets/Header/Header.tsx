@@ -21,7 +21,7 @@ import { useThemeMode } from '@/app/providers/ThemeModeContext';
 
 export function Header() {
     const navigate = useNavigate();
-    const cartCount = useAppSelector((s) => s.cart.items.length);
+    const cartCount = useAppSelector((s) => s.cart?.items?.length ?? 0);
     const theme = useTheme();
     const { toggle } = useThemeMode();
 
