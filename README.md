@@ -1,7 +1,7 @@
 Flights App ✈️
 Test task (ДержКод) — a single-page application for browsing and booking flight tickets.
 
-**Tech Stack**
+# Tech Stack
 * Vite — project bundler
 * React 18 + TypeScript — frontend framework
 * Material-UI (MUI) — UI components
@@ -10,35 +10,35 @@ Test task (ДержКод) — a single-page application for browsing and bookin
 * React Router v6 — routing
 * Jest + React Testing Library — unit testing
 
-**Getting Started**
+# Getting Started
 
-# clone the repo
-git clone <repo-url>
+**clone the repo**   
+git clone <repo-url>  
 cd flights-app
 
-# install dependencies
+**install dependencies**  
 npm install
 
-# start development server
+**start development server**  
 npm run dev
 
-# build for production
+**build for production**  
 npm run build
 
-# run tests
+**run tests**  
 npm test
 
-**Project Structure (Feature-Sliced Design)**
+# Project Structure (Feature-Sliced Design)
 
 src/
-app/          # AppRouter, AppProviders, store
-pages/        # pages (FlightsPage, FlightDetailsPage, CartPage)
-features/     # features (cart, favorites, filters)
-entities/     # entities (flight)
-shared/       # api, theme, ui, lib, types
+app/          # AppRouter, AppProviders, store  
+pages/        # pages (FlightsPage, FlightDetailsPage, CartPage)  
+features/     # features (cart, favorites, filters)  
+entities/     # entities (flight)  
+shared/       # api, theme, ui, lib, types  
 tests/        # setupTests.ts, unit tests
 
-**Implemented**
+# Implemented
 
 * Project setup with Vite + React + TypeScript
 * Redux Toolkit slices for cart and favorites
@@ -47,9 +47,9 @@ tests/        # setupTests.ts, unit tests
 * Initial pages (FlightsPage, FlightDetailsPage, CartPage) with stubs
 * Unit testing environment (Jest + RTL)
 
-**Винести роботу з API в окремий сервісний шар (custom hooks або RTK Query).**
+# Винести роботу з API в окремий сервісний шар (custom hooks або RTK Query).
 
-## API Service Layer (RTK Query)
+**API Service Layer (RTK Query)**
 
 Щоб розділити UI та бізнес‑логіку, робота з API винесена в окремий сервісний шар на базі **Redux Toolkit Query**.  
 Це дає автоматичне кешування, статуси `isLoading/isError`, рефетчинг та нормалізований доступ до даних у всіх компонентах.
@@ -74,20 +74,20 @@ import { useGetFlightsQuery, useGetFlightByIdQuery } from '@/entities/flight/api
 * const { data: flight, isLoading, error } = useGetFlightByIdQuery(id);
 
 
-**API: усі запити через окремий сервісний шар (Axios або RTK Query).**
+# API: усі запити через окремий сервісний шар (Axios або RTK Query).
 
-## API: окремий сервісний шар (RTK Query)
+**API: окремий сервісний шар (RTK Query)**
 
 Усі звернення до бекенда виконуються **через окремий сервісний шар**, побудований на **Redux Toolkit Query** (альтернатива кастомним Axios‑хукам). Це ізолює HTTP‑логіку від UI, забезпечує кешування, стани завантаження/помилок і рефетчинг «з коробки».
 
-### Структура
+**Структура**
 - `src/entities/flight/api.ts` — RTK Query slice з ендпоїнтами:
    - `GET /flights` — список рейсів (підтримка `?airline=&sort=`).
    - `GET /flights/:id` — деталі рейсу.
 - `src/shared/types/flight.ts` — типи даних API.
 - `src/app/store.ts` — підключення `flightApi.reducer` та `flightApi.middleware`.
 
-### Використання у компонентах
+**Використання у компонентах**
 * ts
 - import { useGetFlightsQuery, useGetFlightByIdQuery } from '@/entities/flight/api';
 
@@ -98,7 +98,7 @@ import { useGetFlightsQuery, useGetFlightByIdQuery } from '@/entities/flight/api
 - const { data: flight } = useGetFlightByIdQuery(id);
 
 
-## 🧪 Тести
+# 🧪 Тести
 
 У проєкті додано базове покриття unit-тестами для Redux-ред’юсера та утиліт.
 
