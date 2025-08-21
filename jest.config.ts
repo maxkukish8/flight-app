@@ -15,7 +15,7 @@ const config: Config = {
     transform: {
         '^.+\\.(ts|tsx)$': [
             'ts-jest',
-            { useESM: true, tsconfig: 'tsconfig.json' },
+            { useESM: true, tsconfig: 'tsconfig.app.json' },
         ],
     },
 };
