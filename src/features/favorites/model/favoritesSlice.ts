@@ -1,20 +1,23 @@
-//Redux slice for saving "selected" flights.
-
 import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-type State = { ids: string[] };
-const initialState: State = { ids: [] };
+
+export type FavoritesState = { ids: string[] };
+export const initialFavoritesState: FavoritesState = { ids: [] };
 
 const favoritesSlice = createSlice({
     name: 'favorites',
-    initialState,
+    initialState: initialFavoritesState,
     reducers: {
-        toggle(s, a: PayloadAction<string>) {
-            const id = a.payload;
-            s.ids = s.ids.includes(id) ? s.ids.filter(x => x !== id) : [...s.ids, id];
+        toggle(state, action: { payload: string }) {
+            const id = action.payload;
+            const i = state.ids.indexOf(id);
+            if (i === -1) state.ids.push(id);
+            else state.ids.splice(i, 1);
+        },
+        clear(state) {
+            state.ids = [];
         },
     },
 });
 
-export const { toggle } = favoritesSlice.actions;
+export const { toggle, clear } = favoritesSlice.actions;
 export const favoritesReducer = favoritesSlice.reducer;
